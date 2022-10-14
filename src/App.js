@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Sub from './Sub';
+import './dark.scss'
 
-function App() {
+const App = () => {
+  const { changeMode, createInput } = useSelector(it => it);
+  console.log("app", changeMode)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${changeMode ? "on" : ""}`}>
+      <Sub />
+      {
+        createInput.map(i => <div>{i}</div>)
+      }
     </div>
-  );
+  )
+
 }
 
-export default App;
+export default App
